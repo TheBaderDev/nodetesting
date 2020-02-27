@@ -17,7 +17,17 @@ console.log('Starting Node Server');
 var io = require('socket.io')(serv,{});
 io.sockets.on('connection', function(socket){
 	console.log('socket connection');
-	socket.on('happy', function(){
-		console.log('happy');
+	
+	//server receiving info
+	socket.on('sendMsg', function(data){
+		console.log('happy because ' + data.data);
 	});
+	
+	//server sending socket
+	var sendMsg = function(param) {
+		socket.emit('serverMsg', {
+			msg:param
+		});
+	}
+	
 });

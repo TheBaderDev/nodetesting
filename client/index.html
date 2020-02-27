@@ -3,5 +3,17 @@ HIIII DUUUUde
 <script src="/socket.io/socket.io.js"></script>
 <script>
 	var socket = io();
-	socket.emit('happy');
+	
+	var happy = function(){
+		socket.emit('sendMsg', {
+			data:'information'
+		});
+	}
+	
+	socket.on('serverMsg', function(data) {
+		console.log(data.msg);
+	});
+	
 </script>
+
+<button onclick="happy()">Happy</button>
